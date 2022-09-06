@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ today }}</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_table}}
+    <button type="submit">Add</button>
+</form>
+<br>
+<div >
+    {% if todos %} 
+    {% for todo in todos %}
+<div class="note">
+    {{ todo.date }}
+    <p>{{ todo.todo }}</p>
+    <button type="submit">X</button>
+</div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

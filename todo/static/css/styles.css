@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+}
+
+html {
+    text-align: center;
+    background-color: #ebd3c1;
+    background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+header {
+    background-color: purple;
+    color:#ebd3c1;
+    line-height: 100px;
+    margin-bottom: 50px;;
+}
+
+.custom-nav{
+    background-color: purple;
+    color:#ebd3c1;
+    line-height: 100px;
+    margin-bottom: 50px;;
+}
+
+.note{
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    width: 240px;
+    margin: 16px;
+    float: left;
+}
+
+.note p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+.note button {
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    color: #f5ba13;
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+  }

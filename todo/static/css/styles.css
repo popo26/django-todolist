@@ -2,7 +2,7 @@
     margin: 0;
 }
 
-html {
+body {
     text-align: center;
     background-color: #ebd3c1;
     background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
@@ -21,6 +21,10 @@ header {
     color:#ebd3c1;
     line-height: 100px;
     margin-bottom: 50px;;
+}
+
+.custom-nav a {
+    color: white;
 }
 
 .note{
@@ -51,3 +55,96 @@ header {
     cursor: pointer;
     outline: none;
   }
+
+.month{
+    width:500px;
+    margin:auto;
+}
+
+.month th{
+    line-height: 4rem;
+}
+
+.month tr {
+    line-height: 2rem;
+}
+
+.cal-div {
+    margin-bottom: 50px;
+}
+
+
+/* huiweicalendar */
+.calendar {
+    width: 40%;
+    margin: auto;
+    font-size: 13px;
+  }
+  
+  .calendar tr, .calendar td {
+    border: 3px solid black;
+  }
+  
+  .calendar th {
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .calendar td {
+    width: 80px;
+    height: 100px;
+    padding: 20px 0px 0px 5px;
+  }
+  
+  .month {
+    font-size: 23px;
+  }
+  
+  .date {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  
+  ul {
+    height: 100%;
+    padding: 0px 5px 0px 20px;
+  }
+  
+  a {
+    color: #17a2b8;
+  }
+
+  .left {
+    float: left;
+  }
+  
+  .right {
+    float: right;
+  }
+  
+  .btn {
+    outline: none;
+    color: black;
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
+  }
+  
+  .clearfix {
+    margin: 15px;
+  }
+
+  .form {
+    margin: auto;
+  }
+  
+  .form input, .form select, .form textarea {
+    border-radius: 5px;
+    border: 1px solid #17a2b8;
+    outline: none;
+    background: none;
+    padding: 5px;
+    width: 100%;
+  }
+
+ 

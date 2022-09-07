@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "accounts",
     "todo",
+    'schedule',
+    'djangobower',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                "django.template.context_processors.request",
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -130,5 +133,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.CustomUser" 
 
-LOGIN_REDIRECT_URL = "todo"
-LOGOUT_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "todo:calendar"
+LOGOUT_REDIRECT_URL = "login"
+
+# List of finder classes that know how to find static files in
+# various locations.
+# STATICFILES_FINDERS = (
+#     'djangobower.finders.BowerFinder',
+# )
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'jquery-ui',
+    'bootstrap'
+)

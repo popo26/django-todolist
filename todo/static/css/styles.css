@@ -8,6 +8,8 @@ body {
     background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); */
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
+    
+    background-image: url("https://www.transparenttextures.com/patterns/grid-me.png");
 }
 
 header {
@@ -18,7 +20,7 @@ header {
 }
 
 .custom-nav{
-    
+    border-bottom: 2px solid #777;
     color:#777;
     line-height: 100px;
     margin-bottom: 50px;;
@@ -26,6 +28,7 @@ header {
 
 .custom-nav a {
     color: black;
+   
 }
 
 
@@ -63,48 +66,19 @@ header {
     outline: none;
   }
 
-/* .month{
-    width:500px;
-    margin:auto;
-}
-
-.month th{
-    line-height: 4rem;
-}
-
-.month tr {
-    line-height: 2rem;
-}
-
-.cal-div {
-    margin-bottom: 50px;
-} */
-
 
 /* huiweicalendar */
 .calendar {
     width: 60%;
     margin: auto;
     font-size: 14px;
-    
-    border-radius: 25px;
-    
-
-
-    /* border-radius: 26px;
-    /* border: 1px solid white; 
-    outline: none;
-    background: grey;
-    padding: 5px; */
-    
-    
+    background-color: black;
+    border-radius: 26px;
+    color:white;
   }
 
-  
-  
-  
   .calendar tr, .calendar td {
-    border: 2px solid black;
+    border: 2px solid white;
   }
   
   .calendar th {
@@ -141,7 +115,7 @@ header {
   }
   
   .calendar a {
-    color: purple;
+    color: pink;
     font-family:'Nanum Pen Script', cursive;
     text-decoration: none;
     font-size: large;
@@ -200,7 +174,25 @@ header {
     width:60%;
   }
 
- 
+  .hello {
+    display:inline-flex;
+  }
 
- 
+  .username {
+    display: inline-flex;
+  }
+
+.analog-clock{
+  display: inline-flex;
+}
+
+.date-time{
+  line-height: 0;
+}
+
+.free {
+  width:80%;
+  margin:auto;
+  border-radius: 26px;
+}
  

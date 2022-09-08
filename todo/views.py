@@ -1,80 +1,30 @@
 
-from django.shortcuts import render, redirect
-import datetime
-# from todo.forms import TodoModelForm
-from todo.models import Todo
-
 import calendar
-from calendar import HTMLCalendar
-
+import datetime
+import calendar
+from django.shortcuts import render, redirect
+from todo.models import Todo
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
-import calendar
-
 from .models import *
 from .utils import Calendar
 from .forms import EventForm
 from django.views.generic.edit import DeleteView
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.template.defaulttags import register
   
 
 app_name="todo"
 
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
-# def todo(request, year, month):
-    
-#     form = TodoModelForm()
-#     todos = Todo.objects.all()
-
-#     month = month.capitalize()
-#     month_number = list(calendar.month_name).index(month)
-#     month_number = int(month_number)
-#     cal = HTMLCalendar().formatmonth(year, month_number)
-  
-#     if request.method == "POST":
-#         form = TodoModelForm(request.POST)
-#         if form.is_valid():
-#             current_user=request.user
-#             print(current_user.id)
-#             print(current_user.username)
-#             form.save()
-#             return redirect("todo")
-#         else:
-#             print("the form is invlaid")
-    
-#     context = {
-#         "todos": todos,
-#         "form":form,
-#         "year":year, 
-#         'month':month,
-#         "month_number": month_number,
-#         "cal":cal,
-                
-#     }
-
-#     return render(request, "todo/todo.html", context=context)
-
-# def test(request, year, month):
-#     name = "Ai"
-#     month = month.capitalize()
-#     month_number = list(calendar.month_name).index(month)
-#     month_number = int(month_number)
-
-#     cal = HTMLCalendar().formatmonth(year, month_number)
-#     context={
-#         "name":name, 
-#         "year":year, 
-#         'month':month,
-#         "month_number": month_number,
-#         "cal":cal,
-#     }
-#     return render(request, "todo/test.html", context=context)
 
 class CalendarView(LoginRequiredMixin, generic.ListView):
     model = Event
@@ -94,7 +44,7 @@ class CalendarView(LoginRequiredMixin, generic.ListView):
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
         context['todos'] = todos
-
+  
         if self.request.method == "POST":
             todo = self.request.POST.get['delete-todo']
             delete_todo = Event.object.get(id=todo.id)

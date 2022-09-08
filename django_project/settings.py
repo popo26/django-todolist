@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "accounts",
     "todo",
-    'schedule',
-    # 'djangobower',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +149,7 @@ LOGOUT_REDIRECT_URL = "login"
 # )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "todo/static"),
+# )

@@ -7,7 +7,8 @@ register = template.Library()
 @register.simple_tag
 def today(request):
     TODAY = datetime.date.today()
-    return TODAY
+    nicer_format=TODAY.strftime('%a %d %b %Y')
+    return nicer_format
 
 @register.simple_tag
 def time(request):

@@ -1,16 +1,22 @@
 from datetime import datetime, timedelta
 from calendar import HTMLCalendar
+from unicodedata import name
 from .models import Event
+# from django.contrib.sessions.models import Session
+from accounts.models import CustomUser
+
 
 class Calendar(HTMLCalendar):
 	def __init__(self, year=None, month=None):
 		self.year = year
 		self.month = month
+		
 		super(Calendar, self).__init__()
 
 	# formats a day as a td
 	# filter events by day
 	def formatday(self, day, events):
+		
 		events_per_day = events.filter(start_time__day=day)
 		d = ''
 		for event in events_per_day:
@@ -38,3 +44,5 @@ class Calendar(HTMLCalendar):
 		for week in self.monthdays2calendar(self.year, self.month):
 			cal += f'{self.formatweek(week, events)}\n'
 		return cal
+
+	

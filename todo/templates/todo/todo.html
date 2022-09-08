@@ -1,37 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- <h1>{{ today }}</h1> -->
+<div class="main-container">
 
-<div class="clearfix">
-	<a class="btn btn-info left" href="{% url 'todo:calendar' %}?{{ prev_month }}"> Previous Month </a>
-	<a class="btn btn-info right" href="{% url 'todo:calendar' %}?{{ next_month }}"> Next Month </a>
-	<a class="btn btn-info right" href="{% url 'todo:event_new' %}"> New Event </a>
-</div>
-<div class="cal">
-    {{ calendar }}
-</div>
+
+    <div class="right-div">
+        <div class="clearfix">
+            <a class="btn btn-outline-secondary" href="{% url 'todo:calendar' %}?{{ prev_month }}"> << </a>
+            <a class="btn btn-secondary" href="{% url 'todo:event_new' %}"> New Event </a>
+            <a class="btn btn-outline-secondary" href="{% url 'todo:calendar' %}?{{ next_month }}"> >> </a>
+            
+            <br>
+            {{ calendar }}
+        </div>
+    </div>
 
 <br>
-<div class="today-agenda">
-    {% if todos %} 
-    <h1>Today's todos.</h1>
+
+<div class="left-div container">
+    <div class="row">
+    {% if todos %}
     {% for todo in todos %}
-<div class="note">
-    <form action="{% url 'todo:delete' pk=todo.pk %}" method="post">
-        {% csrf_token %}
-    
-    <p>{{ todo.title }}</p>
-    <p>{{ todo.description }}</p>
-    <p>{{ todo.start_time }}</p>
-    <p>{{ todo.end_time }}</p>
-    <button type="submit" value="Delete">X</button>
-</form>
-</div>
+
+    <div class="note col-6">
+        <form action="{% url 'todo:delete' pk=todo.pk %}" method="post">
+            {% csrf_token %}
+
+            <p>{{ todo.title }}</p>
+            <!-- <p>{{ todo.description }}</p> -->
+            <p>{{ todo.start_time| time:"H:i a" }}</p>
+            
+            <button type="submit" value="Delete">X</button>
+        </form>
+
+    </div>
     {% endfor %}
     {% endif %}
 </div>
+</div>
 
+
+</div>
 
 
 

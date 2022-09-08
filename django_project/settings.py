@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "accounts",
     "todo",
     'schedule',
-    'djangobower',
+    # 'djangobower',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -142,10 +143,12 @@ LOGOUT_REDIRECT_URL = "login"
 #     'djangobower.finders.BowerFinder',
 # )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+# BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 
-BOWER_INSTALLED_APPS = (
-    'jquery',
-    'jquery-ui',
-    'bootstrap'
-)
+# BOWER_INSTALLED_APPS = (
+#     'jquery',
+#     'jquery-ui',
+#     'bootstrap'
+# )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

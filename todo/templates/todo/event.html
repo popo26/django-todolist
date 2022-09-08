@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Event
+<title>Event</title>
 {% endblock %}
 
 {% block content %}
 <div class="clearfix">
-  <a class="btn btn-info left" href="{% url 'todo:calendar' %}"> Calendar </a>
+  <a class="btn btn-secondary left" href="{% url 'todo:calendar' %}"> Back To Calendar </a>
 </div>
 
+<div class="form-div">
 {% if form.errors %}
     {% for field in form %}
         {% for error in field.errors %}
@@ -24,11 +25,27 @@ Event
     {% endfor %}
 {% endif %}
 
+
 <form method="post">
   {% csrf_token %}
   <table class="form form-table">
-    {{ form }}
-    <tr><td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td></tr>
+   
+    <div class="mb-3">
+      {{ form.title.label }}:
+      {{ form.title }}
+    </div>
+    
+    <div class="mb-3">
+    {{ form.start_time.label }}:
+    {{ form.start_time }}
+  </div>
+    <div class="mb-3">
+    {{ form.end_time.label }}:
+    {{ form.end_time }}
+  </div>
+    {{ form.user_name.as_hidden }}
+    <tr><td colspan="2"><button type="submit" class="btn btn-outline-dark btn-lg">Submit</button></td></tr>
   </table>
 </form>
+</div>
 {% endblock %}

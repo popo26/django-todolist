@@ -1,7 +1,7 @@
-from urllib import request
+
 from django.shortcuts import render, redirect
 import datetime
-from todo.forms import TodoModelForm
+# from todo.forms import TodoModelForm
 from todo.models import Todo
 
 import calendar
@@ -19,43 +19,46 @@ from .models import *
 from .utils import Calendar
 from .forms import EventForm
 from django.views.generic.edit import DeleteView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
   
 
 app_name="todo"
 
 
-def todo(request, year, month):
+# def todo(request, year, month):
     
-    form = TodoModelForm()
-    todos = Todo.objects.all()
+#     form = TodoModelForm()
+#     todos = Todo.objects.all()
 
-    month = month.capitalize()
-    month_number = list(calendar.month_name).index(month)
-    month_number = int(month_number)
-    cal = HTMLCalendar().formatmonth(year, month_number)
+#     month = month.capitalize()
+#     month_number = list(calendar.month_name).index(month)
+#     month_number = int(month_number)
+#     cal = HTMLCalendar().formatmonth(year, month_number)
   
-    if request.method == "POST":
-        form = TodoModelForm(request.POST)
-        if form.is_valid():
-            current_user=request.user
-            print(current_user.id)
-            print(current_user.username)
-            form.save()
-            return redirect("todo")
-        else:
-            print("the form is invlaid")
+#     if request.method == "POST":
+#         form = TodoModelForm(request.POST)
+#         if form.is_valid():
+#             current_user=request.user
+#             print(current_user.id)
+#             print(current_user.username)
+#             form.save()
+#             return redirect("todo")
+#         else:
+#             print("the form is invlaid")
     
-    context = {
-        "todos": todos,
-        "form":form,
-        "year":year, 
-        'month':month,
-        "month_number": month_number,
-        "cal":cal,
+#     context = {
+#         "todos": todos,
+#         "form":form,
+#         "year":year, 
+#         'month':month,
+#         "month_number": month_number,
+#         "cal":cal,
                 
-    }
+#     }
 
-    return render(request, "todo/todo.html", context=context)
+#     return render(request, "todo/todo.html", context=context)
 
 # def test(request, year, month):
 #     name = "Ai"
@@ -73,24 +76,19 @@ def todo(request, year, month):
 #     }
 #     return render(request, "todo/test.html", context=context)
 
-class CalendarView(generic.ListView):
+class CalendarView(LoginRequiredMixin, generic.ListView):
     model = Event
     template_name = 'todo/todo.html'
-
-    now = datetime.now()
-    print(now.date)
-    todos = Event.objects.filter(start_time__year=now.year, start_time__month=now.month, start_time__day=now.strftime('%d'))
-    print(todos)
-    print(now.strftime('%d'))
-    
-
+ 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         d = get_date(self.request.GET.get('month', None))
         cal = Calendar(d.year, d.month)
         html_cal = cal.formatmonth(withyear=True)
         now = datetime.now()
-        todos = Event.objects.filter(start_time__year=now.year, start_time__month=now.month, start_time__day=now.strftime('%d'))
+        current_user=self.request.user
+        name=current_user.username
+        todos = Event.objects.filter(start_time__year=now.year, start_time__month=now.month, start_time__day=now.strftime('%d'), user_name=name)
         
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
@@ -123,6 +121,7 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
+@login_required
 def event(request, event_id=None):
     instance = Event()
     if event_id:
@@ -130,13 +129,15 @@ def event(request, event_id=None):
     else:
         instance = Event()
 
-    form = EventForm(request.POST or None, instance=instance)
+    form = EventForm(request.POST or None, instance=instance, initial={"user_name":request.user.username})
     if request.POST and form.is_valid():
+        current_user = request.user
+        form.user_name = current_user.username
         form.save()
         return HttpResponseRedirect(reverse('todo:calendar'))
     return render(request, 'todo/event.html', {'form': form})
 
-class EventDeleteView(DeleteView):
+class EventDeleteView(LoginRequiredMixin,DeleteView):
     model = Event
     success_url = reverse_lazy("todo:calendar")
     

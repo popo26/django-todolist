@@ -1,11 +1,12 @@
 
 from django import forms
-from todo.models import Todo
+# from todo.models import Todo
 
 from django.forms import ModelForm, DateInput
 from todo.models import Event
 
 class EventForm(ModelForm):
+  
   class Meta:
     model = Event
     # datetime-local is a HTML5 input type, format to make date time show on fields
@@ -14,16 +15,18 @@ class EventForm(ModelForm):
       'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
     }
     fields = '__all__'
+    labels = {"title": "Todo"}
 
   def __init__(self, *args, **kwargs):
     super(EventForm, self).__init__(*args, **kwargs)
     # input_formats to parse HTML5 datetime-local input to datetime field
     self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
     self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
+    
 
-class TodoModelForm(forms.ModelForm):
+# class TodoModelForm(forms.ModelForm):
 
-    class Meta:
-        model = Todo
-        fields = "__all__"
+#     class Meta:
+#         model = Todo
+#         fields = "__all__"
         

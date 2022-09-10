@@ -20,21 +20,20 @@ header {
 }
 
 .custom-nav{
-    border-bottom: 2px solid #777;
+    /* border-bottom: 2px solid #777; */
     color:#777;
     line-height: 100px;
     margin-bottom: 50px;;
+    
+    background-color: #279ec2;
+    background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
 }
 
 .custom-nav a {
     color: black;
-   
 }
 
-
-
 .note{
-    /* background: #fff; */
     border-radius: 7px;
     box-shadow: 0 2px 5px #ccc;
     padding: 10px;
@@ -67,7 +66,7 @@ header {
   }
 
 
-/* huiweicalendar */
+/* calendar */
 .calendar {
     width: 60%;
     margin: auto;
@@ -140,15 +139,20 @@ header {
     margin: auto;
   }
   
-  .form input, .form select, .form textarea {
+  /* .form input, .form select, .form textarea {
     border-radius: 5px;
-    border: 2px solid black;
+    border: 1px solid black;
     outline: none;
     background: none;
     padding: 5px;
     width: 100%;
     padding:20px;
     margin:10px;
+  } */
+
+  .form-div{
+    width:600px;
+    margin:auto;
   }
 
   .main-container {

@@ -9,6 +9,15 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ("username", "email")
 
+        widgets = {
+        'username':forms.TextInput(attrs={"class":'form-control'}),
+        'password':forms.PasswordInput(attrs={"class":'form-control'}),
+        }
+        fields = '__all__'
+       
+
+        
+
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:

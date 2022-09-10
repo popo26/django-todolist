@@ -28,24 +28,12 @@
 
 <form method="post">
   {% csrf_token %}
-  <table class="form form-table">
-   
-    <div class="mb-3">
-      {{ form.title.label }}:
-      {{ form.title }}
-    </div>
-    
-    <div class="mb-3">
-    {{ form.start_time.label }}:
-    {{ form.start_time }}
+
+  <div class="row">
+    <div class="col">
+      {{form.as_p}}
+      <button type="submit" class="btn btn-outline-dark btn-lg">Submit</button>
   </div>
-    <div class="mb-3">
-    {{ form.end_time.label }}:
-    {{ form.end_time }}
-  </div>
-    {{ form.user_name.as_hidden }}
-    <tr><td colspan="2"><button type="submit" class="btn btn-outline-dark btn-lg">Submit</button></td></tr>
-  </table>
 </form>
 </div>
 {% endblock %}

@@ -4,23 +4,23 @@
 
 body {
     text-align: center;
-    /* background-color: #ebd3c1;
-    background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); */
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    
+    /* font-family: 'Roboto', sans-serif;
+    font-weight: 500; */
+    font-family: 'Baloo 2', cursive;
     background-image: url("https://www.transparenttextures.com/patterns/grid-me.png");
+
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 header {
-    
     color:#777;
     line-height: 100px;
     margin-bottom: 50px;;
 }
 
 .custom-nav{
-    /* border-bottom: 2px solid #777; */
     color:#777;
     line-height: 100px;
     margin-bottom: 50px;;
@@ -31,6 +31,17 @@ header {
 
 .custom-nav a {
     color: black;
+}
+
+#greeting {
+  font-weight: 600;
+  font-size: 60px;
+}
+
+.account-forms{
+  width:60%;
+  margin:auto;
+  
 }
 
 .note{
@@ -133,6 +144,7 @@ header {
     color: black;
     background-color: transparent;
     box-shadow: 0 0 0 0;
+    
   }
   
   .form {
@@ -184,6 +196,8 @@ header {
 
   .username {
     display: inline-flex;
+    font-weight: 600;
+    font-size:60px;
   }
 
 .analog-clock{
@@ -192,6 +206,9 @@ header {
 
 .date-time{
   line-height: 0;
+  font-size: 26px;
+  color:darkred;
+  
 }
 
 .free {
@@ -199,4 +216,62 @@ header {
   margin:auto;
   border-radius: 26px;
 }
- 
+
+
+
+
+@media only screen and (max-width: 768px) {
+  .navbar a {
+    margin:auto;
+  }
+
+  .navbar-text {
+    width:80%;
+    margin:auto;
+  }
+
+  .clock-div {
+    margin:auto;
+  }
+
+ .greet-username {
+  text-align: center;
+  margin:auto;
+ }
+
+  #greeting {
+    font-size:30px;
+  }
+
+  .username {
+    font-size:30px;
+  }
+
+  .left-div {
+    width:80%;
+    margin:auto;
+  }
+
+  .right-div {
+    width:100%;
+    margin:auto;
+  }
+
+  .form-div{
+    width:98%;
+    margin:auto;
+  }
+
+  /* .calendar {
+    width: 98%;
+    margin: auto;
+    font-size: 10px;
+    background-color: black;
+    border-radius: 26px;
+    color:white;
+  } */
+
+
+}
+
+

@@ -4,10 +4,28 @@
 
 {% block content %}
 <h2>Sign Up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
- 
-  <button type="submit" class="btn btn-outline-dark btn-lg">Sign Up</button>
-</form>
+<br>
+<div class="account-forms">
+<div class="row">
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="col">
+      <!-- {{ form.as_p }} -->
+      {{ form.username }}
+      <br>
+      {{ form.email }}
+      <br>
+      <!-- {{ form.password1 }} -->
+      <!-- {{ form.password2 }} -->
+      <input type="password" name="password1" autocomplete="'new-password" required id="id_password1" class="form-control text-center" placeholder="Password: AT LEAST 8 CHARACTERS" />
+     <br>
+      <input type="password" name="password2" autocomplete="'new-password" required id="id_password2" class="form-control text-center" placeholder="Confirm Password" />
+<br>
+      <button type="submit" class="btn btn-outline-dark btn-lg">Count Me In!</button>
+    </div>
+  </form>
+</div>
+</div>
 {% endblock %}

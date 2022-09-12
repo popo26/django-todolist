@@ -93,3 +93,4 @@ class EventDeleteView(LoginRequiredMixin,DeleteView):
     
 
 
+ 

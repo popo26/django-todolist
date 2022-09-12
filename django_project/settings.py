@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "accounts",
     "todo",
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 "django.template.context_processors.request",
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
@@ -148,8 +150,17 @@ LOGOUT_REDIRECT_URL = "login"
 #     'bootstrap'
 # )
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, "todo/static"),
 # )
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+
+# Django Sass
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
+

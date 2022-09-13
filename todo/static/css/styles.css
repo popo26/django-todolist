@@ -101,7 +101,7 @@ header {
   }
   
   .calendar td {
-    width: 60px;
+    width: 50px;
     height: 50px;
     padding: 30px 0px 0px 5px;
 
@@ -218,9 +218,9 @@ header {
 }
 
 
+/* mobile */
 
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 430px) {
   .navbar a {
     margin:auto;
   }
@@ -240,38 +240,253 @@ header {
  }
 
   #greeting {
-    font-size:30px;
+    font-size:20px;
   }
 
   .username {
-    font-size:30px;
+    font-size:20px;
   }
 
   .left-div {
-    width:80%;
-    margin:auto;
+    width:100%;
+    /* margin:auto; */
+    float:none;
   }
 
   .right-div {
     width:100%;
-    margin:auto;
+    float:none;
   }
 
   .form-div{
-    width:98%;
+    width:100%;
     margin:auto;
   }
 
-  /* .calendar {
-    width: 98%;
+  
+
+  .note{
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 6px;
+    width: 140px;
+    margin: 16px;
+    float: none;
+    background-color: #f2f274;
+    background-image: url("https://www.transparenttextures.com/patterns/graphy.png");
+    font-family:'Nanum Pen Script', cursive;
+    font-size: 16px;
+}
+
+.note p {
+    font-size: 1em;
+    margin-bottom: 3px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+.note button {
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    color: red;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .calendar {
+    width: 100%;
     margin: auto;
-    font-size: 10px;
+    font-size: 4px;
     background-color: black;
     border-radius: 26px;
     color:white;
+  }
+
+  .calendar tr, .calendar td {
+    border: 2px solid white;
+  }
+  
+  .calendar th {
+    padding: 5px;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    
+  }
+  
+  .calendar td {
+    width: 30px;
+    height: 18px;
+    padding: 20px 0px 0px 5px;
+
+    font-family: 'Roboto', sans-serif;
+    /* font-weight: 900; */
+    
+  }
+  
+  .month {
+    font-size: 12px;
+  }
+  
+  .date {
+    font-size: 22px;
+    font-weight: bolder;
+  }
+  
+  ul {
+    height: 100%;
+    padding: 0 2px 0 2px;
+  }
+  
+  .calendar a {
+    color: pink;
+    font-family:'Nanum Pen Script', cursive;
+    text-decoration: none;
+    font-size:x-small;
+  }
+
+}
+
+/* tablet */
+
+@media only screen and (max-width: 800px) and (min-width:431px) {
+  /* .navbar a {
+    margin:auto;
   } */
+
+  .navbar-text {
+    width:50%;
+    margin:auto;
+  }
+
+  .clock-div {
+    margin:auto;
+  }
+
+ .greet-username {
+  text-align: center;
+  margin:auto;
+ }
+
+  #greeting {
+    font-size:46px;
+  }
+
+  .username {
+    font-size:46px;
+  }
+
+  .left-div {
+    width:90%;
+    float:none;
+  }
+
+  .right-div {
+    width:100%;
+    /* margin:auto; */
+    float:none;
+  }
+
+  .form-div{
+    width:60%;
+    margin:auto;
+  }
+
+  .note{
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 8px;
+    width: 180px;
+    margin: 16px;
+    float: none;
+    background-color: #f2f274;
+    background-image: url("https://www.transparenttextures.com/patterns/graphy.png");
+    font-family:'Nanum Pen Script', cursive;
+    font-size: 20px;
+}
+
+.note p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+.note button {
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    color: red;
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .calendar {
+    width: 100%;
+    margin: auto;
+    font-size: 4px;
+    background-color: black;
+    border-radius: 26px;
+    color:white;
+  }
+
+  .calendar tr, .calendar td {
+    border: 2px solid white;
+  }
+  
+  .calendar th {
+    padding: 5px;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    
+  }
+  
+  .calendar td {
+    width: 30px;
+    height: 18px;
+    padding: 20px 0px 0px 5px;
+
+    font-family: 'Roboto', sans-serif;
+    /* font-weight: 900; */
+    
+  }
+  
+  .month {
+    font-size: 12px;
+  }
+  
+  .date {
+    font-size: 22px;
+    font-weight: bolder;
+  }
+  
+  ul {
+    height: 100%;
+    padding: 0 2px 0 2px;
+  }
+  
+  .calendar a {
+    color: pink;
+    font-family:'Nanum Pen Script', cursive;
+    text-decoration: none;
+    font-size:x-small;
+  }
 
 
 }
+
+
+
+
 
 

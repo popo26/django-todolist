@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div>
+    <a href="{% url 'todo:covid'%}"><button type="button" class="btn btn-outline-dark">COVID</button></a>
+    <a href="{% url 'todo:covid'%}"><button type="button" class="btn btn-outline-dark">Fun Facts</button></a>
+    <a href="{% url 'todo:covid'%}"><button type="button" class="btn btn-outline-dark">NASA</button></a>
+  </div>
 <div class="main-container">
 
     <div class="right-div">
@@ -27,7 +32,6 @@
                     {% csrf_token %}
 
                     <p>{{ todo.title }}</p>
-                    <!-- <p>{{ todo.description }}</p> -->
                     <p>{{ todo.start_time| time:"H:i a" }}</p>
 
                     <button type="submit" value="Delete">X</button>

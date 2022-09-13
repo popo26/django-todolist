@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+<h1>Confirmed COVID Cases</h1>
+<br>
+<h2>In {{country_name}}</h2>
+<h2>From {{ two_days_before_yesterday }} to {{ day_before_yesterday }}</h2>
+<h2>{{ confirmed_cases_till_now }} cases.</h2>
+</div>
+
+
+{% endblock %}

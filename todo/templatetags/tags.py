@@ -4,6 +4,9 @@ import requests
 import os
 from math import trunc
 from django import template
+import reverse_geocoder as rg
+import pycountry
+
 
 register = template.Library()
 
@@ -13,6 +16,7 @@ g = geocoder.ip('me')
 
 lat=g.latlng[0]
 lon=g.latlng[1]
+COORDINATES = (lat, lon)
 weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
 geocoder_URL=f'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en'
 
@@ -48,4 +52,14 @@ def time(request):
     now = datetime.datetime.now()
     time = now.strftime("%I:%M %p")
     return time
+
+
+def reverseGeocode(coordinates):
+    # coordinates = (lat, lon)
+    result = rg.search(coordinates)
+    iso3166_1_alpha_2=result[0]['cc']
+    pycountry_result = pycountry.countries.get(alpha_2=iso3166_1_alpha_2)
+    return pycountry_result.name
+    
+
 

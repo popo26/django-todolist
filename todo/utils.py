@@ -1,9 +1,8 @@
 from datetime import datetime, timedelta
 from calendar import HTMLCalendar
-from unicodedata import name
 from .models import Event
-# from django.contrib.sessions.models import Session
 from accounts.models import CustomUser
+
 
 
 class Calendar(HTMLCalendar):
@@ -16,11 +15,21 @@ class Calendar(HTMLCalendar):
 	# formats a day as a td
 	# filter events by day
 	def formatday(self, day, events):
+
+		# events_per_day = events.filter(start_time__day=day)
+		# d = ''
+		# for event in events_per_day:
+		# 	if event.user_name == "Ai":
+		# 		d += f'<li> {event.get_html_url} </li>'
+
 		
 		events_per_day = events.filter(start_time__day=day)
 		d = ''
 		for event in events_per_day:
-			d += f'<li> {event.get_html_url} </li>'
+			users = CustomUser.objects.all()
+			for user in users:
+				if user.username == event.user_name and user.login_status == True and user.logout_status == False:					
+					d += f'<li> {event.get_html_url} </li>'
 
 		if day != 0:
 			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"

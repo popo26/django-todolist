@@ -3,6 +3,7 @@ import calendar
 import datetime
 import calendar
 import requests
+import os
 from datetime import timedelta
 from django.shortcuts import render, redirect
 from todo.models import Todo
@@ -28,6 +29,8 @@ from .templatetags.tags import reverseGeocode
   
 
 app_name="todo"
+
+NASA_API_KEY=os.getenv("NASA_API_KEY")
 
 #To use dictionary as template variable
 @register.filter
@@ -148,7 +151,6 @@ def covid(request):
     two_days_before_yesterday_cases = int(data[1]['Cases'])
     day_before_yesterday_cases = int(data[0]['Cases'])
     confirmed_cases_till_now = two_days_before_yesterday_cases - day_before_yesterday_cases
-    print(confirmed_cases_till_now)
 
     context = {
         'country_name': country,
@@ -162,5 +164,51 @@ def covid(request):
 def fun_facts(request):
     
     return render(request, 'todo/fun_facts.html')
+
+def nasa(request):
+    nasa_apod_url=f'https://api.nasa.gov/planetary/apod?api_key={NASA_API_KEY}'
+    response=requests.get(nasa_apod_url)
+    data=response.json()
+
+    date = data["date"]
+    title = data['title']
+    explanation = data['explanation']
+    img = data["url"]
+
+    context = {
+        "date": date,
+        "title": title,
+        "explanation": explanation,
+        'img':img,
+    }
+
+    return render(request, 'todo/nasa.html', context=context)
+
+def trivia(request):
+    trivia_url = "https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=boolean"
+    response = requests.get(trivia_url)
+    data=response.json()
+
+    results = data['results'][0]
+
+    question = results['question']
+    answer = results['correct_answer']
+
+    context = {
+        'question':question,
+        'answer':answer,
+    }
+ 
+    return render(request, 'todo/trivia.html', context=context)
+
+def bored(request):
+    bored_url = "http://www.boredapi.com/api/activity"
+    response=requests.get(bored_url)
+    data=response.json()
+
+    activity = data['activity']
+    return render(request, 'todo/bored.html', {"activity":activity})
+
+
 
  

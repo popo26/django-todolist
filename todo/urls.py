@@ -13,5 +13,8 @@ urlpatterns = [
     re_path(r'^event/edit/(?P<event_id>\d+)/$', views.event, name='event_edit'),
     path("<int:pk>/delete/", views.EventDeleteView.as_view(), name='delete'),
     path("covid/", views.covid, name='covid'),
+    path("nasa/", views.nasa, name='nasa'),
+    path("trivia/", views.trivia, name='trivia'),
+    path("bored/", views.bored, name='bored'),
     
 ]

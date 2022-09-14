@@ -20,6 +20,13 @@ header {
     margin-bottom: 50px;;
 }
 
+.extra-buttons {
+  border-radius: 100%;
+  background: #5c008a !important;
+  border:none;
+  color:white !important;
+}
+
 .custom-nav{
     color:#777;
     line-height: 100px;
@@ -483,6 +490,58 @@ header {
   }
 
 
+}
+
+
+/* nasa.html */
+
+.nasa-div {
+  width:90%;
+  margin:auto;
+}
+
+
+.responsive {
+  width: 100%;
+  max-width:600px;
+  height:auto;
+}
+
+.explanation {
+  padding: 30px;
+  text-align: left;
+  text-transform: capitalize;
+  font-family:'Nanum Pen Script', cursive;
+}
+
+/* trivia */
+
+.trivia-div{
+  border: 5px solid #5c008a;
+  background-color: #5c008a;
+  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre-v2.png");
+  color:white;
+}
+
+.trivia-div button {
+  background-color: transparent;
+  border: none;
+}
+
+.trivia-div button:hover {
+  background: black;
+  border-radius: 100%;
+
+}
+
+/* bored */
+
+.bored-div h1{
+  text-transform: capitalize;
+}
+
+.bored-div h3 {
+  font-family:'Nanum Pen Script', cursive;
 }
 
 

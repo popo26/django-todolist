@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="clearfix">
+    <a class="btn btn-secondary left" href="{% url 'todo:calendar' %}"> Back To Calendar </a>
+  </div>
+
+<div class="nasa-div">
+    <h1>{{ title }}</h1>
+    <p>Picture taken on {{ date }}</p>
+    <br>
+    <img src="{{ img }}" alt="nasa-apod" class="responsive">
+    <br>
+    <div class="explanation">
+    <h4>{{ explanation }}</h4>
+    </div>
+
+</div>
+
+
+{% endblock %}

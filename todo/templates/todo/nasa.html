@@ -13,10 +13,29 @@
     <img src="{{ img }}" alt="nasa-apod" class="responsive">
     <br>
     <div class="explanation">
-    <h4>{{ explanation }}</h4>
+    <!-- <h4>{{ explanation|truncatechars:100 }} 
+      <a  href="">Full Description</a>
+    </h4> -->
+
+   
+      <div class="accordion-item">
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h4>T{{ explanation }}</h4>
+          </div>
+        </div>
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
+          aria-expanded="true" aria-controls="collapseOne">
+            Read Full Description
+          </button>
+        </h2>
+      </div>
+
     </div>
 
 </div>
+
 
 
 {% endblock %}

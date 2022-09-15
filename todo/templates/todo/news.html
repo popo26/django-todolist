@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="clearfix">
+    <a class="btn btn-secondary left" href="{% url 'todo:calendar' %}"> Back To Calendar </a>
+</div>
+
+<div>
+    <h1>News</h1>
+    <br>
+    <div class="search-div">
+    <form action="{% url 'todo:news' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+        {{ form.search }}
+        <!-- <input type="text" name="search"> -->
+        <br>
+        <button type="submit" class="btn btn-info extra-buttons2">Search</button>
+    </div>
+    </form>
+</div>
+</div>
+
+<div class="news-div container">
+    {% if results %}
+    <div class="row row-div">
+        {% for result in results %}
+        <div class="card cols-lg-3 each-card" style="width: 18rem;">
+            <img src="{{ result.thumbnail}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">{{ result.title }}</p>
+                <a href="{{ result.webpageUrl}}">Source</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No news search result found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

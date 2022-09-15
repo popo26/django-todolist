@@ -16,5 +16,7 @@ urlpatterns = [
     path("nasa/", views.nasa, name='nasa'),
     path("trivia/", views.trivia, name='trivia'),
     path("bored/", views.bored, name='bored'),
+    path("news/", views.news, name='news'),
+    path("quote/", views.quote, name='quote'),
     
 ]

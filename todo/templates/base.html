@@ -26,16 +26,14 @@
   {% load sass_tags %}
   <link href="{% sass_src 'css/baloon.scss' %}" rel="stylesheet" type="text/css" />
 
-
-
-
 </head>
 
 <body>
 
-  <nav class="navbar custom-nav">
+  <!-- <nav class="navbar custom-nav">
     <div class="container-fluid">
       {% if user.is_authenticated %}
+
       <div class="greet-username">
         <h1 id="greeting" class="hello">Hello, </h1>
         <h1 class="username">{{user.username}}</h1>
@@ -61,8 +59,6 @@
           {% time request %}</p>
       </div>
 
-
-
       <span class="navbar-text" id="bubble">
         <h2>{% load tags %}
           {% today request %}</h2>
@@ -81,7 +77,72 @@
       </span>
       {% endif %}
     </div>
+  </nav> -->
+
+   <!-- collapse added -->
+   <nav class="navbar navbar-expand-lg custom-nav">
+    <div class="container-fluid">
+      {% if user.is_authenticated %}
+      <!-- <a class="navbar-brand" href="#"> -->
+        <div class="greet-username">
+          <h1 id="greeting" class="hello">Hello, </h1>
+          <h1 class="username">{{user.username}}</h1>
+        </div>
+      <!-- </a> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- <a class="nav-link active" aria-current="page" href="#"> -->
+            <div class="clock-div">
+              <div class="clock analog-clock">
+                <div class="outer-clock-face">
+                  <div class="marking marking-one"></div>
+                  <div class="marking marking-two"></div>
+                  <div class="marking marking-three"></div>
+                  <div class="marking marking-four"></div>
+                  <div class="inner-clock-face">
+                    <div class="hand hour-hand"></div>
+                    <div class="hand min-hand"></div>
+                    <div class="hand second-hand"></div>
+                  </div>
+                </div>
+              </div>
+              <p class="date-time">
+                {% load tags %}
+                {% time request %}</p>
+            </div>
+          <!-- </a> -->
+          <!-- <a class="nav-link" href="#"> -->
+            <span class="navbar-text" id="bubble">
+              <h2>{% load tags %}
+                {% today request %}</h2>
+              <h3>
+                In {% geo_name request %},
+                {% weather_api request %}.
+                {% temp_api request  %} °C.
+              </h3>
+            </span>
+          <!-- </a> -->
+          
+          <a class="nav-link" href="{% url 'logout'%}">
+            <button type="button" class="btn btn-outline-dark btn-lg logout-button">Logout</button>
+          </a>
+        
+          <!-- <a class="nav-link disabled">Disabled</a> -->
+        </div>
+      </div>
+      <!-- <a href="{% url 'logout'%}"><button type="button" class="btn btn-outline-dark btn-lg logout-button">Logout</button></a> -->
+      {% else %}
+      <span>
+        <a href="{% url 'signup'%}"><button type="button" class="btn btn-outline-dark btn-lg">Signup</button></a>
+        <a href="{% url 'login'%}"><button type="button" class="btn btn-outline-dark btn-lg">Login</button></a>
+      </span>
+      {% endif %}
+    </div>
   </nav>
+  <!-- collapse added -->
 
 
 

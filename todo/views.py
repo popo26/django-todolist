@@ -5,10 +5,10 @@ import calendar
 import requests
 import os
 from datetime import timedelta
-from django.shortcuts import render, redirect
+
 from todo.models import Todo
 from datetime import datetime, timedelta, date
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -17,7 +17,7 @@ from django.utils.safestring import mark_safe
 from todo.templatetags.tags import COORDINATES
 from .models import *
 from .utils import Calendar
-from .forms import EventForm
+from .forms import EventForm, SearchForm
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -46,16 +46,16 @@ def get_item(dictionary, key):
 @receiver(user_logged_in)
 def on_login(sender, user, request, **kwargs):
     current_user = request.user
-    print(current_user)
-    print(f"LoginStatus is {current_user.login_status}")
+    # print(current_user)
+    # print(f"LoginStatus is {current_user.login_status}")
     current_user.login_status = True
     current_user.save()
-    print(f"LoginStatus is{current_user.login_status}")
+    # print(f"LoginStatus is{current_user.login_status}")
     if current_user.logout_status == True:
         current_user.logout_status = False
         current_user.save()
-    print(f"LogOut Status is {current_user.logout_status}")
-    print('User Just logged In....')
+    # print(f"LogOut Status is {current_user.logout_status}")
+    # print('User Just logged In....')
     
 @receiver(user_logged_out)
 def on_logout(sender, user, request, **kwargs):
@@ -134,6 +134,7 @@ class EventDeleteView(LoginRequiredMixin,DeleteView):
     model = Event
     success_url = reverse_lazy("todo:calendar")
 
+@login_required
 def covid(request):
     today = datetime.today()
     y3 = today - timedelta(days=3)
@@ -152,19 +153,20 @@ def covid(request):
     day_before_yesterday_cases = int(data[0]['Cases'])
     confirmed_cases_till_now = two_days_before_yesterday_cases - day_before_yesterday_cases
 
+    two_b_yesterday = y3.strftime('%d %b')
+    day_b_yesterday = y2.strftime('%d %b')
+
     context = {
         'country_name': country,
         "confirmed_cases_till_now" : confirmed_cases_till_now,
-        "two_days_before_yesterday": two_days_before_yesterday,
-        "day_before_yesterday": day_before_yesterday,
+        "two_days_before_yesterday": two_b_yesterday,
+        "day_before_yesterday": day_b_yesterday,
     }
     
     return render(request, 'todo/covid.html', context=context)
     
-def fun_facts(request):
-    
-    return render(request, 'todo/fun_facts.html')
 
+@login_required
 def nasa(request):
     nasa_apod_url=f'https://api.nasa.gov/planetary/apod?api_key={NASA_API_KEY}'
     response=requests.get(nasa_apod_url)
@@ -184,6 +186,7 @@ def nasa(request):
 
     return render(request, 'todo/nasa.html', context=context)
 
+@login_required
 def trivia(request):
     trivia_url = "https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=boolean"
     response = requests.get(trivia_url)
@@ -201,6 +204,7 @@ def trivia(request):
  
     return render(request, 'todo/trivia.html', context=context)
 
+@login_required
 def bored(request):
     bored_url = "http://www.boredapi.com/api/activity"
     response=requests.get(bored_url)
@@ -208,6 +212,60 @@ def bored(request):
 
     activity = data['activity']
     return render(request, 'todo/bored.html', {"activity":activity})
+
+@login_required
+def news(request):
+    form = SearchForm()
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI"
+            search = request.POST.get('search')
+            print(search)
+
+            querystring = {"q":f"{search}","pageNumber":"1","pageSize":"10","autoCorrect":"true"}
+
+            headers = {
+                "X-RapidAPI-Key": os.getenv("RAPID_API_KEY"),
+                "X-RapidAPI-Host": os.getenv('RAPIDAPI_HOST'),
+            }
+
+            response = requests.request("GET", url, headers=headers, params=querystring)
+
+            data = response.json()
+            # all_data = data['value']
+            # results = []
+
+            print(data)
+
+            # for item in all_data:
+            #     results.append(item)
+
+            context = {
+                # "results": results,
+                'form':form,
+            }
+
+            return redirect(reverse('todo:news'), context=context)
+        else:
+            print("FAIL!")
+
+    return render(request, 'todo/news.html', {"form":form})
+
+@login_required
+def quote(request):
+    quote_url = "https://zenquotes.io/api/random"
+    response=requests.get(quote_url)
+    data=response.json()
+
+    quote = data[0]['q']
+    author = data[0]['a']
+
+    context = {
+        "quote":quote,
+        "author":author,
+    }
+    return render(request, 'todo/quote.html', context=context)
 
 
 

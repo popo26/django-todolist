@@ -1,4 +1,5 @@
 
+from tkinter.ttk import Widget
 from django import forms
 # from todo.models import Todo
 
@@ -32,3 +33,7 @@ class EventForm(ModelForm):
 #         model = Todo
 #         fields = "__all__"
         
+class SearchForm(forms.Form):
+  search = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':"form-control", 'placeholder':"Search Keyword"}))
+
+  

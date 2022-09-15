@@ -10,7 +10,7 @@
 
   <form method="post">
     {% csrf_token %}
-
+    <div class="login-div">
     <div class="col">
       <!-- {{ form.as_p }} -->
       {{ form.username }}
@@ -25,6 +25,7 @@
 <br>
       <button type="submit" class="btn btn-outline-dark btn-lg">Count Me In!</button>
     </div>
+  </div>
   </form>
 </div>
 </div>

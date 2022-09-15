@@ -7,11 +7,14 @@
 </div>
 
 <div class="bored-div">
-    <h1>Bored? Here is an idea....</h1>
     <br>
-    <h3>Why don't you {{ activity }}?</h3>
+    <h1>Inspration for you.</h1>
     <br>
-    <a class="btn btn-info extra-buttons2" href="{% url 'todo:bored' %}"> Still Bored? </a>
+    <h3>{{ quote }}</h3>
+    <br>
+    <h4>By {{ author }}</h4>
+    <br>
+    <a class="btn btn-info extra-buttons2" href="{% url 'todo:quote' %}"> More </a>
 
 </div>
 

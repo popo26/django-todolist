@@ -3,27 +3,26 @@ from calendar import HTMLCalendar
 from .models import Event
 from accounts.models import CustomUser
 
-'''This is for user specific calendar'''
 
-class Calendar(HTMLCalendar):
+'''This is for family calendar'''
+
+class CalendarAll(HTMLCalendar):
 	def __init__(self, year=None, month=None):
 		self.year = year
 		self.month = month
 		
-		super(Calendar, self).__init__()
+		super(CalendarAll, self).__init__()
 
 	# formats a day as a td
 	# filter events by day
 	def formatday(self, day, events):
-		
+
 		events_per_day = events.filter(start_time__day=day)
 		d = ''
 		for event in events_per_day:
-			users = CustomUser.objects.all()
-			for user in users:
-				if user.username == event.user_name and user.login_status == True and user.logout_status == False:					
-					d += f'<li> {event.get_html_url} </li>'
+			d += f'<li> {event.get_event_name} </li>'
 
+		
 		if day != 0:
 			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
 		return '<td></td>'

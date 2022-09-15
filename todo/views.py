@@ -17,6 +17,7 @@ from django.utils.safestring import mark_safe
 from todo.templatetags.tags import COORDINATES
 from .models import *
 from .utils import Calendar
+from .utils2 import CalendarAll
 from .forms import EventForm, SearchForm
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -63,9 +64,9 @@ def on_logout(sender, user, request, **kwargs):
     current_user.logout_status = True
     current_user.login_status = False
     current_user.save()
-    print(f"LoginStatus is {current_user.login_status}")
-    print(f"LogOut Status is {current_user.logout_status}")
-    print('User Just logged Out....')
+    # print(f"LoginStatus is {current_user.login_status}")
+    # print(f"LogOut Status is {current_user.logout_status}")
+    # print('User Just logged Out....')
 
 
 class CalendarView(LoginRequiredMixin, generic.ListView):
@@ -113,6 +114,33 @@ def next_month(d):
     next_month = last + timedelta(days=1)
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
+
+class CalendarAllView(LoginRequiredMixin, generic.ListView):
+    model = Event
+    template_name = 'todo/family.html'
+ 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        d = get_date(self.request.GET.get('month', None))
+        cal = CalendarAll(d.year, d.month)
+        html_cal = cal.formatmonth(withyear=True)
+        now = datetime.now()
+        # current_user=self.request.user
+        # name=current_user.username
+        todos = Event.objects.filter(start_time__year=now.year, start_time__month=now.month, start_time__day=now.strftime('%d'))
+        
+        context['calendar'] = mark_safe(html_cal)
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
+        context['todos'] = todos
+        # context['current_user'] = name
+  
+        # if self.request.method == "POST":
+        #     todo = self.request.POST.get['delete-todo']
+        #     delete_todo = Event.object.get(id=todo.id)
+        #     delete_todo.delete()
+        
+        return context
 
 @login_required
 def event(request, event_id=None):

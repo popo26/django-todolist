@@ -181,6 +181,19 @@ header {
     font-size: large;
   }
 
+  /* .calendar div {
+    height: 100%;
+    padding: 0px 2px 0px 16px;
+  }
+
+  .calendar li {
+    color: aquamarine;
+    font-family:'Nanum Pen Script', cursive;
+    text-decoration: none;
+    font-size: large;
+    
+  } */
+
   .left {
     float: left;
   } 
@@ -426,8 +439,6 @@ header {
     margin:auto;
   }
 
-  
-
   .note{
     border-radius: 7px;
     box-shadow: 0 2px 5px #ccc;
@@ -503,7 +514,7 @@ header {
   
   ul {
     height: 100%;
-    padding: 0 2px 0 2px;
+    padding: 0 2px 0 10px;
   }
   
   .calendar a {
@@ -512,6 +523,18 @@ header {
     text-decoration: none;
     font-size:x-small;
   }
+
+  /* .calendar div {
+    height: 100%;
+    padding: 0px 3px 0px 5px;
+  }
+
+  .calendar li {
+    color:aquamarine;
+    font-family:'Nanum Pen Script', cursive;
+    text-decoration: none;
+    font-size:x-small;
+  } */
 
   .covid-div {
     width:60%;
@@ -670,15 +693,27 @@ header {
   
   ul {
     height: 100%;
-    padding: 0 2px 0 2px;
+    padding: 0 2px 0 12px;
   }
   
   .calendar a {
     color: pink;
     font-family:'Nanum Pen Script', cursive;
     text-decoration: none;
-    font-size:x-small;
+    font-size:small;
   }
+
+  /* .calendar div {
+    height: 100%;
+    padding: 0 2px 0 10px;
+  } */
+
+  /* .calendar li {
+    color:aquamarine;
+    font-family:'Nanum Pen Script', cursive;
+    text-decoration: none;
+    font-size:small;
+  } */
 
 
 }

@@ -14,6 +14,11 @@ class Event(models.Model):
         url = reverse('todo:event_edit', args=(self.id,))
         return f'<a href="{url}"> {self.title} ({self.user_name})</a>'
 
+    @property
+    def get_event_name(self):
+        url = reverse('todo:event_edit', args=(self.id,))
+        return f'{self.title} ({self.user_name})'
+
 
 class Todo(models.Model):
     todo = models.CharField(max_length=200, null=False)

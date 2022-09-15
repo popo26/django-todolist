@@ -221,8 +221,6 @@ def news(request):
         if form.is_valid():
             url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI"
             search = request.POST.get('search')
-            print(search)
-
             querystring = {"q":f"{search}","pageNumber":"1","pageSize":"10","autoCorrect":"true"}
 
             headers = {
@@ -233,20 +231,18 @@ def news(request):
             response = requests.request("GET", url, headers=headers, params=querystring)
 
             data = response.json()
-            # all_data = data['value']
-            # results = []
+            all_data = data['value']
+            results = []
 
-            print(data)
-
-            # for item in all_data:
-            #     results.append(item)
+            for item in all_data:
+                results.append(item)
 
             context = {
-                # "results": results,
+                "results": results,
                 'form':form,
             }
 
-            return redirect(reverse('todo:news'), context=context)
+            return render(request, 'todo/news.html', context=context)
         else:
             print("FAIL!")
 

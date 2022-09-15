@@ -337,7 +337,7 @@ header {
 }
 
 .search-div {
-  width:500px;
+  width:60%;
   margin:auto;
 }
 
@@ -537,7 +537,6 @@ header {
 /* tablet */
 
 @media only screen and (max-width: 800px) and (min-width:431px) {
-
 
   .account-forms{
     width:50%;

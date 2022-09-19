@@ -196,12 +196,12 @@ SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 
 #Heroku
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #Heroku
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# STATICFILES_DIRS = (
-# os.path.join(BASE_DIR, 'static'),
-# )
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, 'static'),
+)
 

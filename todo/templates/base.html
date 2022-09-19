@@ -38,6 +38,10 @@
       <div class="greet-username">
         <h1 id="greeting" class="hello">Hello, </h1>
         <h1 class="username">{{user.username}}</h1>
+
+        {% load tags %}
+        
+        {% get_location request %}
       </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"

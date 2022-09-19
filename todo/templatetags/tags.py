@@ -16,8 +16,8 @@ def get_ip():
     response = requests.get('https://api64.ipify.org?format=json').json()
     return response["ip"]
 
-
-def get_location():
+@register.simple_tag
+def get_location(request):
     ip_address = get_ip()
     response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
     location_data = {
@@ -36,8 +36,8 @@ G_API_KEY=os.getenv("G_API_KEY")
 g = geocoder.ip(ip)
 
 print(f"g is {g}.")
-print(f"get_ip is {get_ip()}")
-print(f"get_location is {get_location()}")
+# print(f"get_ip is {get_ip()}")
+# print(f"get_location is {get_location()}")
 
 lat=g.latlng[0]
 lon=g.latlng[1]

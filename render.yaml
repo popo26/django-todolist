@@ -1,0 +1,20 @@
+databases:
+  - name: django_project
+    databaseName: django_project
+    user: django_project
+
+services:
+  - type: web
+    name: django_project
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn django_project.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: django_project
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

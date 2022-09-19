@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "django-todolist2"
+version = "0.1.0"
+description = ""
+authors = ["popo26 <mynameispopo26@gmail.com>"]
+readme = "README.md"
+packages = [{include = "django_todolist2"}]
+
+[tool.poetry.dependencies]
+python = "3.7.14"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

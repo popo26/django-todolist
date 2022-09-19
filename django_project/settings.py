@@ -202,9 +202,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 #Heroku
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_DIRS = (
-os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+# os.path.join(BASE_DIR, 'static'),
+# )
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), staticfiles=False)

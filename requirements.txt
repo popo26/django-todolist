@@ -1,7 +1,7 @@
 asgiref==3.5.2
 attrs==22.1.0
 Babel==2.10.3
-backports.zoneinfo==0.2.1
+
 bleach==5.0.1
 bokeh==2.4.3
 Brotli==1.0.9

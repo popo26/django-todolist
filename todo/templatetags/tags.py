@@ -29,6 +29,7 @@ def get_location(request):
     return location_data
 
 
+
 ip = get_ip()
 
 API_KEY=os.getenv("API_KEY")
@@ -45,8 +46,14 @@ COORDINATES = (lat, lon)
 weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
 geocoder_URL=f'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en'
 
-
-
+@register.simple_tag
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 

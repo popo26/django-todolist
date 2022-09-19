@@ -54,6 +54,8 @@ def on_logout(sender, user, request, **kwargs):
     current_user.logout_status = True
     current_user.login_status = False
     current_user.save()
+
+
    
 
 class CalendarView(LoginRequiredMixin, generic.ListView):

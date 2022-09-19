@@ -40,8 +40,8 @@
         <h1 class="username">{{user.username}}</h1>
 
         {% load tags %}
-        
-        {% get_location request %}
+        <p>{% get_client_ip request %}</p>
+        <p>{% get_location request %}</p>
       </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -113,6 +113,8 @@
   {% load static %}
   <script src="{% static 'js/greeting.js' %}"></script>
   <script src="{% static 'js/clock.js' %}"></script>
+
+ 
 
 </body>
 

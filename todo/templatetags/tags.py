@@ -10,15 +10,46 @@ import pycountry
 
 register = template.Library()
 
+'''test'''
+
+def get_ip():
+    response = requests.get('https://api64.ipify.org?format=json').json()
+    return response["ip"]
+
+
+def get_location():
+    ip_address = get_ip()
+    response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
+    location_data = {
+        "ip": ip_address,
+        "city": response.get("city"),
+        "region": response.get("region"),
+        "country": response.get("country_name")
+    }
+    return location_data
+
+
+ip = get_ip()
+
 API_KEY=os.getenv("API_KEY")
 G_API_KEY=os.getenv("G_API_KEY")
-g = geocoder.ip('me')
+g = geocoder.ip(ip)
+
+print(f"g is {g}.")
+print(f"get_ip is {get_ip()}")
+print(f"get_location is {get_location()}")
 
 lat=g.latlng[0]
 lon=g.latlng[1]
 COORDINATES = (lat, lon)
 weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
 geocoder_URL=f'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en'
+
+
+
+
+
+
 
 @register.simple_tag
 def geo_name(request):

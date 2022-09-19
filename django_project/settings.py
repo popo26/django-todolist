@@ -42,7 +42,7 @@ SECRET_KEY =os.environ["SECRET_KEY"]
 #Heroku
 DEBUG = os.environ.get("DJANGO_DEBUG", '') != "False"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['glacial-taiga-97914.herokuapp.com', '127.0.0.1']
 
 # #Render
 # RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')

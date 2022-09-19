@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     "accounts",
     "todo",
     'sass_processor',
@@ -207,5 +207,5 @@ os.path.join(BASE_DIR, 'static'),
 )
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
 

@@ -1,5 +1,3 @@
-
-from tkinter.ttk import Widget
 from django import forms
 
 from django.forms import ModelForm, DateInput

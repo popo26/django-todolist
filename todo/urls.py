@@ -4,10 +4,7 @@ from . import views
 app_name = "todo"
 
 urlpatterns = [
-    # path("", views.todo, name="todo"),
-    # path("test/", views.test, name="test"),
-    # path("<int:year>/<str:month>", views.todo, name="todo"),
-    # re_path(r'^calendar/$', views.CalendarView.as_view(), name='calendar'),
+   
     path('', views.CalendarView.as_view(), name='calendar'),
     path('family/', views.CalendarAllView.as_view(), name='family-calendar'),
     re_path(r'^event/new/$', views.event, name='event_new'),

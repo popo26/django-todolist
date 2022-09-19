@@ -4,14 +4,7 @@ $color-brown: #774f38;
 $color-beige: #ece5ce;
 $color-yellow: #f9cdad;
 $color-pink: #fe4365;
-// body {
-//   height: 100vh;
-//   margin: 0;
-//   display: grid;
-//   place-items: center;
-//   font: 2vw system-ui;
-//   background-color: $color-yellow;
-// }
+
 
 body #bubble {
   transform: translatey(0px);
@@ -28,7 +21,6 @@ body #bubble {
   border-radius: 11px;
   position: relative;
   box-shadow: 20px 20px $color-blue;
-  // font-family: "Baloo 2", cursive;
   font-family:'Nanum Pen Script', cursive;
   // border: 1px solid $color-green;
 }

@@ -5,7 +5,6 @@ import calendar
 import requests
 import os
 from datetime import timedelta
-
 from todo.models import Todo
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404, redirect
@@ -13,7 +12,6 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
-
 from todo.templatetags.tags import COORDINATES
 from .models import *
 from .utils import Calendar
@@ -23,7 +21,6 @@ from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.template.defaulttags import register
-
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
 from .templatetags.tags import reverseGeocode
@@ -38,25 +35,18 @@ NASA_API_KEY=os.getenv("NASA_API_KEY")
 def get_item(dictionary, key):
     return dictionary.get(key)
 
-# def get_user(request):
-#     current_user = request.user
-#     return current_user.username
-
 
 #Login/Logout counters added because request.user doesn't work outside views.py
 @receiver(user_logged_in)
 def on_login(sender, user, request, **kwargs):
     current_user = request.user
-    # print(current_user)
-    # print(f"LoginStatus is {current_user.login_status}")
     current_user.login_status = True
     current_user.save()
-    # print(f"LoginStatus is{current_user.login_status}")
+   
     if current_user.logout_status == True:
         current_user.logout_status = False
         current_user.save()
-    # print(f"LogOut Status is {current_user.logout_status}")
-    # print('User Just logged In....')
+ 
     
 @receiver(user_logged_out)
 def on_logout(sender, user, request, **kwargs):
@@ -64,10 +54,7 @@ def on_logout(sender, user, request, **kwargs):
     current_user.logout_status = True
     current_user.login_status = False
     current_user.save()
-    # print(f"LoginStatus is {current_user.login_status}")
-    # print(f"LogOut Status is {current_user.logout_status}")
-    # print('User Just logged Out....')
-
+   
 
 class CalendarView(LoginRequiredMixin, generic.ListView):
     model = Event
@@ -81,7 +68,12 @@ class CalendarView(LoginRequiredMixin, generic.ListView):
         now = datetime.now()
         current_user=self.request.user
         name=current_user.username
-        todos = Event.objects.filter(start_time__year=now.year, start_time__month=now.month, start_time__day=now.strftime('%d'), user_name=name)
+        todos = Event.objects.filter(
+            start_time__year=now.year, 
+            start_time__month=now.month, 
+            start_time__day=now.strftime('%d'), 
+            user_name=name
+            )
         
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
@@ -127,18 +119,16 @@ class CalendarAllView(LoginRequiredMixin, generic.ListView):
         now = datetime.now()
         # current_user=self.request.user
         # name=current_user.username
-        todos = Event.objects.filter(start_time__year=now.year, start_time__month=now.month, start_time__day=now.strftime('%d'))
+        todos = Event.objects.filter(
+            start_time__year=now.year, 
+            start_time__month=now.month, 
+            start_time__day=now.strftime('%d')
+            )
         
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
         context['todos'] = todos
-        # context['current_user'] = name
-  
-        # if self.request.method == "POST":
-        #     todo = self.request.POST.get['delete-todo']
-        #     delete_todo = Event.object.get(id=todo.id)
-        #     delete_todo.delete()
         
         return context
 

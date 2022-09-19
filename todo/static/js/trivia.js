@@ -3,10 +3,7 @@ function checkAnswer1(){
     const trues = document.getElementById('trues')
     let true_text = trues.getAttribute('name')
     const q_img = document.getElementById('question-img')
-   
-    // console.log("trues " + true_text)
-    // console.log('Answer is ' + answer)
-    
+       
     if (answer != true_text){
         document.getElementById('result').innerHTML = "WRONG!";
         document.getElementById('result').style.color = "red";
@@ -25,8 +22,6 @@ function checkAnswer2(){
     let false_text = falses.getAttribute('name')
     const q_img = document.getElementById('question-img')
    
-    // console.log("falses " + false_text)
-    // console.log('Answer is ' + answer)
     
     if (answer != false_text){
         document.getElementById('result').innerHTML = "WRONG!";

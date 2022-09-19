@@ -1,7 +1,6 @@
 
 from tkinter.ttk import Widget
 from django import forms
-# from todo.models import Todo
 
 from django.forms import ModelForm, DateInput
 from todo.models import Event
@@ -27,11 +26,6 @@ class EventForm(ModelForm):
     self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
     
 
-# class TodoModelForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Todo
-#         fields = "__all__"
         
 class SearchForm(forms.Form):
   search = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':"form-control", 'placeholder':"Search Keyword"}))

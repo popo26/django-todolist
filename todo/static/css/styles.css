@@ -57,12 +57,36 @@ header {
 }
 
 .logout-button {
-  margin:0 40px 0 40px;
+  margin:0 0 0 100px;
+}
+
+.password-reset-button {
+  --bs-btn-padding-y: .25rem;
+  --bs-btn-padding-x: .5rem; 
+  --bs-btn-font-size: 1rem;
+  border-radius: 26px;
+  background-color: #f2f274 !important;
+  color:#777 !important;
+  font-weight:800;
+}
+
+.password-reset-button:hover {
+  --bs-btn-padding-y: .25rem;
+  --bs-btn-padding-x: .5rem; 
+  --bs-btn-font-size: 1rem;
+  border-radius: 26px;
+  background-color: transparent !important;
+  color: #f2f274!important;
+  font-weight:800;
 }
 
 .login-div {
   background-color: #279ec2;
   background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
+  width:60%;
+  min-width:200px;
+  margin:auto;
+  padding:40px;
 }
 
 .navbar-text {
@@ -70,9 +94,6 @@ header {
   margin:auto;
 }
 
-/* .ml-auto {
-  margin-right:0 !important;
-} */
 
 #greeting {
   font-weight: 600;
@@ -87,12 +108,7 @@ header {
   border-radius: 26px;
 }
 
-.login-div {
-  width:60%;
-  min-width:200px;
-  margin:auto;
-  padding:40px;
-}
+
 
 .note{
     border-radius: 7px;
@@ -181,19 +197,7 @@ header {
     font-size: large;
   }
 
-  /* .calendar div {
-    height: 100%;
-    padding: 0px 2px 0px 16px;
-  }
-
-  .calendar li {
-    color: aquamarine;
-    font-family:'Nanum Pen Script', cursive;
-    text-decoration: none;
-    font-size: large;
-    
-  } */
-
+  
   .left {
     float: left;
   } 
@@ -209,22 +213,20 @@ header {
     box-shadow: 0 0 0 0;
     
   }
+
+  .family-button {
+    background-color: pink !important;
+    border-color: pink !important;
+    color:#5c008a;
+    border:2px solid #5c008a !important;
+    
+  }
   
   .form {
     margin: auto;
   }
   
-  /* .form input, .form select, .form textarea {
-    border-radius: 5px;
-    border: 1px solid black;
-    outline: none;
-    background: none;
-    padding: 5px;
-    width: 100%;
-    padding:20px;
-    margin:10px;
-  } */
-
+ 
   .form-div{
     width:600px;
     margin:auto;
@@ -374,6 +376,19 @@ header {
   text-transform: capitalize;
 }
 
+/* password_change_form.html */
+
+.reset-button {
+  margin-top:20px;
+}
+
+.high-five {
+  margin-top:20px;
+  border-radius: 100%;
+  width: 100%;
+  max-width:600px;
+  height:auto;
+}
 
 
 /* mobile */
@@ -393,6 +408,10 @@ header {
     min-width:260px;
     margin:auto;
     padding:40px;
+  }
+
+  .logout-button {
+    margin:0;
   }
 
   .navbar a {
@@ -425,7 +444,6 @@ header {
 
   .left-div {
     width:100%;
-    /* margin:auto; */
     float:none;
   }
 
@@ -497,10 +515,7 @@ header {
     width: 30px;
     height: 18px;
     padding: 20px 0px 0px 5px;
-
     font-family: 'Roboto', sans-serif;
-    /* font-weight: 900; */
-    
   }
   
   .month {
@@ -524,17 +539,6 @@ header {
     font-size:x-small;
   }
 
-  /* .calendar div {
-    height: 100%;
-    padding: 0px 3px 0px 5px;
-  }
-
-  .calendar li {
-    color:aquamarine;
-    font-family:'Nanum Pen Script', cursive;
-    text-decoration: none;
-    font-size:x-small;
-  } */
 
   .covid-div {
     width:60%;
@@ -576,9 +580,10 @@ header {
     padding:40px;
   }
 
-  /* .navbar a {
-    margin:auto;
-  } */
+  .logout-button {
+    margin:0;
+  }
+
 
   .navbar-text {
     width:50%;
@@ -609,7 +614,6 @@ header {
 
   .right-div {
     width:100%;
-    /* margin:auto; */
     float:none;
   }
 
@@ -676,10 +680,7 @@ header {
     width: 30px;
     height: 18px;
     padding: 20px 0px 0px 5px;
-
-    font-family: 'Roboto', sans-serif;
-    /* font-weight: 900; */
-    
+    font-family: 'Roboto', sans-serif;    
   }
   
   .month {
@@ -702,19 +703,6 @@ header {
     text-decoration: none;
     font-size:small;
   }
-
-  /* .calendar div {
-    height: 100%;
-    padding: 0 2px 0 10px;
-  } */
-
-  /* .calendar li {
-    color:aquamarine;
-    font-family:'Nanum Pen Script', cursive;
-    text-decoration: none;
-    font-size:small;
-  } */
-
 
 }
 

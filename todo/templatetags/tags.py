@@ -55,7 +55,6 @@ def time(request):
 
 
 def reverseGeocode(coordinates):
-    # coordinates = (lat, lon)
     result = rg.search(coordinates)
     iso3166_1_alpha_2=result[0]['cc']
     pycountry_result = pycountry.countries.get(alpha_2=iso3166_1_alpha_2)

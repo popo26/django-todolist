@@ -35,13 +35,13 @@ SECRET_KEY =os.environ["SECRET_KEY"]
 # SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG") or False
+# DEBUG = os.getenv("DEBUG") or False
 
 # #Render
 # DEBUG = 'RENDER' not in os.environ
 
 # #Heroku
-# DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['glacial-taiga-97914.herokuapp.com', '127.0.0.1']
 
@@ -162,13 +162,7 @@ USE_TZ = True
 # This setting tells Django at which URL static files are going to be served to the user.
 # Here, they well be accessible at your-domain.onrender.com/static/...
 STATIC_URL = '/static/'
-# Following settings only make sense on production and may break development environments.
-# if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-#     # in your application directory on Render.
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     # Turn on WhiteNoise storage backend that takes care of compressing static files
-#     # and creating unique names for each version so they can safely be cached forever.
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 # Default primary key field type
@@ -201,11 +195,11 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #Heroku
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-# STATICFILES_DIRS = (
-# os.path.join(BASE_DIR, 'static'),
-# )
+
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, 'static'),
+)
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), staticfiles=False)

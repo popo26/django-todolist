@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY =os.getenv("SECRET_KEY")
 
 #Heroku
-SECRET_KEY =os.environ("SECRET_KEY")
+SECRET_KEY =os.environ["SECRET_KEY"]
 
 # #Render
 # SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')

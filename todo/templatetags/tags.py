@@ -1,4 +1,7 @@
 import datetime
+from ipaddress import ip_address
+from telnetlib import IP
+
 import geocoder
 import requests
 import os
@@ -11,6 +14,31 @@ import pycountry
 register = template.Library()
 
 '''test'''
+ip_a = []
+
+@register.simple_tag
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+        if len(ip_a):
+            ip_a.clear()
+            ip_a.append(ip)
+        else:
+            ip_a.append(ip)
+        print(f"ip_a1 insde is {ip_a[0]}")
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+        if len(ip_a):
+            ip_a.clear()
+            ip_a.append(ip)
+        else:
+            ip_a.append(ip)
+        print(f"ip_a2 outside is {ip_a[0]}")
+    return ip
+
+
+print(f"ip_1 outside is {ip_a}")
 
 def get_ip():
     response = requests.get('https://api64.ipify.org?format=json').json()
@@ -18,7 +46,12 @@ def get_ip():
 
 @register.simple_tag
 def get_location(request):
-    ip_address = get_ip()
+    # ip_address = get_ip()
+    # print(ip_address)
+    original_ip = ip()
+    print(f"Original IP is {original_ip}")
+    ip_address = ip2long(original_ip)
+
     response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
     location_data = {
         "ip": ip_address,
@@ -28,13 +61,36 @@ def get_location(request):
     }
     return location_data
 
+import socket, struct
+import netaddr
 
+#Convert IP string to Int
+def ip2long(ip):
+    """
+    Convert an IP string to long
+    """
+    # packedIP = socket.inet_aton(ip)
+    # return struct.unpack("!L", packedIP)[0]
+    print(f"NETAADR is {netaddr.IPAddress(ip)}")
+    return netaddr.IPAddress(ip)
 
-ip = get_ip()
+def ip():
+    if len(ip_a):
+        ip = ip_a[0]
+        print(f"IP1 is {ip}")
+    else:
+        ip="8.8.8.8"
+        # ip = 2iplong(original_ip)
+        print(f"IP2 is {ip}")
+    return ip
+
+client_ip = ip()
+print(f"Client_IP is {type(client_ip)}")
+
 
 API_KEY=os.getenv("API_KEY")
 G_API_KEY=os.getenv("G_API_KEY")
-g = geocoder.ip(ip)
+g = geocoder.ip(client_ip)
 
 print(f"g is {g}.")
 # print(f"get_ip is {get_ip()}")
@@ -46,14 +102,6 @@ COORDINATES = (lat, lon)
 weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
 geocoder_URL=f'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en'
 
-@register.simple_tag
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[-1].strip()
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
 
 
 

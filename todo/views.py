@@ -56,18 +56,7 @@ def on_logout(sender, user, request, **kwargs):
     current_user.login_status = False
     current_user.save()
 
-# def get_client_ip(request):
-#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-#     if x_forwarded_for:
-#         ip = x_forwarded_for.split(',')[-1].strip()
-#     else:
-#         ip = request.META.get('REMOTE_ADDR')
-#     return ip
-
-# IP = get_client_ip
-
-
-   
+  
 
 class CalendarView(LoginRequiredMixin, generic.ListView):
     model = Event
@@ -172,7 +161,7 @@ def covid(request):
     two_days_before_yesterday = y3.strftime('%Y-%m-%d')
     y2 = today - timedelta(days=2)
     day_before_yesterday = y2.strftime('%Y-%m-%d')
-
+    # When testing locally cordinates defaults to Auckland, NZ
     country = reverseGeocode(coordinates=tuple_cordinates()).lower()
     country_name = country.replace(" ", "-")
    

@@ -39,7 +39,7 @@ SECRET_KEY =os.environ["SECRET_KEY"] or "secret"
 # #Heroku
 DEBUG = os.environ.get('DJANGO_DEBUG', False) or True
 
-ALLOWED_HOSTS = ['oakenfull-calendar.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['whatsmyagendatoday.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

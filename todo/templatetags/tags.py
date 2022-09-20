@@ -13,7 +13,7 @@ import netaddr
 register = template.Library()
 
 API_KEY=os.getenv("API_KEY")
-G_API_KEY=os.getenv("G_API_KEY")
+# G_API_KEY=os.getenv("G_API_KEY")
 
 ip_a = []
 

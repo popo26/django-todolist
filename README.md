@@ -18,7 +18,11 @@ This app allow you to add and remove your todo items as well as view the whole f
 5. Get a free API at [OpenWeather API](https://api.openweathermap.org). Fill related sections in the `.env_example` file.
 6. Get a free API at [Nasa API](https://api.nasa.gov/). Fill related sections in the `.env_example` file.
 7. Get a free API at [Rapid API](https://rapidapi.com/hub). Fill related sections in the `.env_example` file.
-8. rename `.env_example` to `.env`.
+8. From terminal, run `python manage.py shell`. Then run following code to generate secret key.
+    `from django.core.management.utils import get_random_secret_key`
+    `print(get_random_secret_key())` --> Copy the key to SECRET_KEY in `.env_example`.
+    `exit()`
+9. rename `.env_example` to `.env`.
 
 
 ## Run the app:

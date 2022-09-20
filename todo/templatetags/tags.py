@@ -1,6 +1,4 @@
 import datetime
-from ipaddress import ip_address
-from telnetlib import IP
 
 import geocoder
 import requests
@@ -9,9 +7,13 @@ from math import trunc
 from django import template
 import reverse_geocoder as rg
 import pycountry
+import netaddr
 
 
 register = template.Library()
+
+API_KEY=os.getenv("API_KEY")
+G_API_KEY=os.getenv("G_API_KEY")
 
 '''test'''
 ip_a = []
@@ -40,9 +42,9 @@ def get_client_ip(request):
 
 print(f"ip_1 outside is {ip_a}")
 
-def get_ip():
-    response = requests.get('https://api64.ipify.org?format=json').json()
-    return response["ip"]
+# def get_ip():
+#     response = requests.get('https://api64.ipify.org?format=json').json()
+#     return response["ip"]
 
 @register.simple_tag
 def get_location(request):
@@ -51,6 +53,7 @@ def get_location(request):
     original_ip = ip()
     print(f"Original IP is {original_ip}")
     ip_address = ip2long(original_ip)
+    print(f"ip_address is {ip_address}")
 
     response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
     location_data = {
@@ -59,10 +62,11 @@ def get_location(request):
         "region": response.get("region"),
         "country": response.get("country_name")
     }
+    print(f"location data is {location_data}")
     return location_data
 
-import socket, struct
-import netaddr
+
+
 
 #Convert IP string to Int
 def ip2long(ip):
@@ -84,37 +88,83 @@ def ip():
         print(f"IP2 is {ip}")
     return ip
 
-client_ip = ip()
-print(f"Client_IP is {type(client_ip)}")
+# client_ip = ip()
+# print(f"Client_IP is {client_ip}")
 
 
-API_KEY=os.getenv("API_KEY")
-G_API_KEY=os.getenv("G_API_KEY")
-g = geocoder.ip(client_ip)
 
-print(f"g is {g}.")
+# g = geocoder.ip(client_ip)
+
+# print(f"g is {g}.")
 # print(f"get_ip is {get_ip()}")
 # print(f"get_location is {get_location()}")
 
-lat=g.latlng[0]
-lon=g.latlng[1]
-COORDINATES = (lat, lon)
-weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
-geocoder_URL=f'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en'
+def get_cordinates():
+    
+    
+    client_ip = ip()
+    g = geocoder.ip(client_ip)
+    print(f"g is {g}.")
+    if IndexError:
+        #Auckland cordinates
+        lat="-36.848461"
+        lon="174.763336"
+       
+    else:
+        lat=g.latlng[0]
+        lon=g.latlng[1]
+    
+    cordinates = {
+        "lat":lat,
+        "lon":lon,
+    }
+    print(f'cordinates is {cordinates}')
+    return cordinates
+
+# lat=g.latlng[0]
+# lon=g.latlng[1]
+# print(f"lat is {lat}")
+# print(f"lon is {lon}")
+# COORDINATES = (lat, lon)
+# weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
+# geocoder_URL=f'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en'
+
+# @register.simple_tag
+# def geo_name(request):
+#     response=requests.get(geocoder_URL)
+#     data=response.json()
+#     loc=data['localityInfo']['administrative'][2]['name']
+#     print(loc)
+#     return loc
 
 
-
-
+def tuple_cordinates():
+    cordinates = get_cordinates()
+    lat = cordinates['lat']
+    lon = cordinates['lon']
+    return (lat, lon)
+    
 
 @register.simple_tag
 def geo_name(request):
-    response=requests.get(geocoder_URL)
-    data=response.json()
-    loc=data['localityInfo']['administrative'][2]['name']
-    return loc
+    original_ip = ip()
+    print(f"Original IP is {original_ip}")
+    ip_address = ip2long(original_ip)
+    print(f"ip_address is {ip_address}")
+    response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
+    region = response.get("region")
+      
+    return region
 
 @register.simple_tag
 def weather_api(request):
+    print(f"ip_a is {ip_a}")
+    # client_ip = ip()
+    # print(f"Client_IP is {client_ip}")
+    cordinates = get_cordinates()
+    lat = cordinates["lat"]
+    lon = cordinates["lon"]
+    weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
     response = requests.get(weather_URL)
     data=response.json()
     current_weather = data["weather"][0]['description']
@@ -122,6 +172,10 @@ def weather_api(request):
 
 @register.simple_tag
 def temp_api(request):
+    cordinates = get_cordinates()
+    lat = cordinates["lat"]
+    lon = cordinates["lon"]
+    weather_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
     response = requests.get(weather_URL)
     data=response.json()
     current_temp = trunc(data['main']["temp"])

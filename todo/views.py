@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
-from todo.templatetags.tags import COORDINATES
+# from todo.templatetags.tags import COORDINATES
 from .models import *
 from .utils import Calendar
 from .utils2 import CalendarAll
@@ -23,7 +23,8 @@ from django.contrib.auth.decorators import login_required
 from django.template.defaulttags import register
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
-from .templatetags.tags import reverseGeocode
+from .templatetags.tags import reverseGeocode, tuple_cordinates
+
   
 
 app_name="todo"
@@ -172,7 +173,7 @@ def covid(request):
     y2 = today - timedelta(days=2)
     day_before_yesterday = y2.strftime('%Y-%m-%d')
 
-    country = reverseGeocode(coordinates=COORDINATES).lower()
+    country = reverseGeocode(coordinates=tuple_cordinates()).lower()
     country_name = country.replace(" ", "-")
    
     covid_url = f"https://api.covid19api.com/total/country/{country_name}/status/confirmed?from={two_days_before_yesterday}T00:00:00Z&to={day_before_yesterday}T00:00:00Z"

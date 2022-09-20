@@ -12,7 +12,6 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
-# from todo.templatetags.tags import COORDINATES
 from .models import *
 from .utils import Calendar
 from .utils2 import CalendarAll
@@ -56,7 +55,7 @@ def on_logout(sender, user, request, **kwargs):
     current_user.login_status = False
     current_user.save()
 
-  
+    
 
 class CalendarView(LoginRequiredMixin, generic.ListView):
     model = Event

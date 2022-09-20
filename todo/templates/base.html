@@ -38,10 +38,9 @@
       <div class="greet-username">
         <h1 id="greeting" class="hello">Hello, </h1>
         <h1 class="username">{{user.username}}</h1>
-        <!-- Use below lines to verify IP info etc. in tags.py -->
-        {% load tags %}
-        <p>{% get_client_ip request %}</p>
-        <p>{% get_location request %}</p>
+        <!-- Client IP info -->
+        <p hidden>{% load tags %}{% get_client_ip request %}</p>
+       
       </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"

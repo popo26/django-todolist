@@ -152,7 +152,7 @@ def geo_name(request):
     ip_address = ip2long(original_ip)
     print(f"ip_address is {ip_address}")
     response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
-    region = response.get("region")
+    region = response.get("city")
       
     return region
 

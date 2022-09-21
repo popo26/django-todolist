@@ -33,11 +33,11 @@ SECRET_KEY =os.environ["SECRET_KEY"] or "secret"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv("DEBUG") or False
+DEBUG = os.getenv("DEBUG") or False
 
 
 # #Heroku
-DEBUG = os.environ.get('DJANGO_DEBUG', False) or True
+# DEBUG = os.environ.get('DJANGO_DEBUG', False) or True
 
 ALLOWED_HOSTS = ['whatsmyagendatoday.herokuapp.com', '127.0.0.1']
 

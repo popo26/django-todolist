@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     "accounts",
     "todo",
     'sass_processor',
-    # 'compressor',
 ]
 
 MIDDLEWARE = [
@@ -163,7 +162,6 @@ LOGOUT_REDIRECT_URL = "login"
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
-    # 'compressor.finders.CompressorFinder',
 ]
 
 # Django Sass
@@ -223,10 +221,5 @@ LOGGING = {
 DEBUG_PROPAGATE_EXCEPTIONS = True
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-# COMPRESS_PRECOMPILERS = (
-#     ('text/x-scss', 'django_libsass.SassCompiler'),
-# )
 
-# COMPRESS_OFFLINE = True
-# LIBSASS_OUTPUT_STYLE = 'compressed'
 

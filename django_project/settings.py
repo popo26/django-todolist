@@ -173,6 +173,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #Heroku
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 STATICFILES_DIRS = (

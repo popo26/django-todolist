@@ -13,6 +13,7 @@ class EventForm(ModelForm):
       'start_time': DateInput(attrs={'type': 'datetime-local', "class":'form-control'}, format='%Y-%m-%dT%H:%M'),
       'end_time': DateInput(attrs={'type': 'datetime-local', "class":'form-control'}, format='%Y-%m-%dT%H:%M'),
       'user_name':forms.HiddenInput(),
+      'username':forms.HiddenInput(),
     }
     fields = '__all__'
     labels = {"title": "Todo", 'start_time': "Start", 'end_time':"End"}

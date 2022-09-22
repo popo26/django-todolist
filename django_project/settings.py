@@ -172,7 +172,7 @@ SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #Heroku
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 STATICFILES_DIRS = (

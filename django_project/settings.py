@@ -29,11 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY =os.getenv("SECRET_KEY")
 
 #Heroku
-SECRET_KEY =os.environ["DJANGO_SECRET_KEY"] or 'secret'
+SECRET_KEY =os.environ["DJANGO_SECRET_KEY"] or "secret"
+
+
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv("DEBUG") or False
 
 
 # #Heroku
-DEBUG = os.environ.get('DJANGO_DEBUG', "") == "True"
+DEBUG = os.environ.get('DJANGO_DEBUG', "") or "True"
 
 ALLOWED_HOSTS = ['whatsmyagendatoday.herokuapp.com', '127.0.0.1']
 

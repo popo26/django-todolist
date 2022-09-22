@@ -37,7 +37,8 @@ SECRET_KEY =os.environ["DJANGO_SECRET_KEY"] or "secret"
 
 
 # #Heroku
-DEBUG = os.environ.get('DJANGO_DEBUG', False)
+# DEBUG = os.environ.get('DJANGO_DEBUG', False)
+DEBUG = os.environ.get('DJANGO_DEBUG', "") == "True"
 
 ALLOWED_HOSTS = ['whatsmyagendatoday.herokuapp.com', '127.0.0.1']
 
@@ -179,5 +180,6 @@ os.path.join(BASE_DIR, 'static'),
 )
 
 # Activate Django-Heroku.
-django_heroku.settings(locals(), staticfiles=False)
+# django_heroku.settings(locals(), staticfiles=False)
+django_heroku.settings(locals())
 
